@@ -50,9 +50,9 @@
 						<div class="header-navbar animated" data-animate="fadeInDown" data-delay=".75">
 							<nav class="header-menu" id="header-menu">
     <ul class="menu">
-    <li class="menu-item has-sub">
-        <a class="menu-link nav-link menu-toggle" href="#">Home</a>
-        <div class="menu-sub menu-drop menu-mega menu-mega-3clmn">
+    <li class="menu-item">
+        <a class="menu-link nav-link" href="#">Home</a>
+        <!-- <div class="menu-sub menu-drop menu-mega menu-mega-3clmn">
             <div class="menu-mega-innr">
                 <ul class="menu-mega-list">
                     <li class="menu-item"><a href="index-azalea.html">Azalea Dark<span class="badge badge-xs badge-light">v1.6</span></a></li>
@@ -80,13 +80,13 @@
                     <li class="menu-item"><a href="index-flax-wallet.html">Flax Wallet<span class="badge badge-xs badge-light">v1.8</span></a></li>
                     <li class="menu-item"><a href="index-crocus-multi.html">Crocus Multi<span class="badge badge-xs badge-light">v1.9</span></a></li>
                     <li class="menu-item"><a href="index-cyanus-multi.html">Cyanus Multi<span class="badge badge-xs badge-info">NEW</span></a></li>
-                </ul>
+                </ul> 
             </div>
-        </div>
+        </div> -->
     </li>
-    <li class="menu-item has-sub">
-        <a class="menu-link nav-link menu-toggle" href="#">Pages</a>
-        <ul class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+    <li class="menu-item">
+        <a class="menu-link nav-link" href="./page-about-v2.php">About Us</a>
+        <!-- <ul class="menu-sub menu-drop menu-mega menu-mega-2clmn">
             <div class="menu-mega-innr">
                 <ul class="menu-mega-list">
                     <li class="menu-item"><a class="menu-link nav-link" href="page-about.html">About Us - Base</a></li>
@@ -110,11 +110,11 @@
                     <li class="menu-item"><a class="menu-link nav-link" href="page-career.html">Career - Cyanus<span class="badge badge-dot"></span></a></li>
                 </ul>
             </div>
-        </ul>
+        </ul> -->
     </li>
-    <li class="menu-item has-sub">
-        <a class="menu-link nav-link menu-toggle" href="#">Blog & Misc</a>
-        <ul class="menu-sub menu-drop">
+     <li class="menu-item">
+     <a class="menu-link nav-link" href="./blog-3clmn.php">Notices</a>
+       <!-- <ul class="menu-sub menu-drop">
             <li class="menu-item has-sub">
                 <a class="menu-link nav-link menu-toggle" href="#">Blog Pages</a>
                 <ul class="menu-sub menu-drop">
@@ -156,11 +156,11 @@
                     <li class="menu-item"><a class="menu-link nav-link" href="error-404-light.html" target="_blank">404 - Light</a></li>
                 </ul>
             </li>
-        </ul>
-    </li>
-    <li class="menu-item has-sub">
-        <a class="menu-link nav-link menu-toggle" href="#">Elements</a>
-        <div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
+        </ul> -->
+    </li> 
+    <li class="menu-item">
+        <a class="menu-link nav-link" href="./page-faq.php">FAQ</a>
+        <!-- <div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
             <div class="menu-mega-innr">
                 <ul class="menu-mega-list">
                     <li class="menu-item"><a href="element-alert.html">Alert</a></li>
@@ -184,9 +184,9 @@
                     <li class="menu-item"><a href="element-accordion.html">Accordions</a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </li>
-    <li class="menu-item has-sub">
+    <!-- <li class="menu-item has-sub">
         <a class="menu-link nav-link menu-toggle" href="#">Blocks</a>
         <div class="menu-sub menu-drop menu-mega menu-mega-2clmn">
             <div class="menu-mega-innr">
@@ -210,11 +210,11 @@
                 </ul>
             </div>
         </div>
-    </li>
+    </li>-->
 </ul>
 
     <ul class="menu-btns">
-        <li><a href="page-login.html" class="btn btn-md btn-auto btn-primary no-change"><span>Login</span></a></li>
+        <li><a href="../html-userpanel/login.php" class="btn btn-md btn-auto btn-primary no-change"><span>Login</span></a></li>
     </ul>
 </nav>
 						</div><!-- .header-navbar @e -->
@@ -237,16 +237,19 @@
                                     <div class="col-lg-7 col-xl-6 col-sm-10 text-center text-lg-left">
                                         <div class="banner-caption cpn tc-light">
                                             <div class="cpn-head"> 
-                                                <h1 class="title title-md animated" data-animate="fadeInUp" data-delay="1.1">The New Model of <br class="d-none d-md-block">Crypto-Currency Business</h1>
+                                                <h1 class="title title-md animated" data-animate="fadeInUp" data-delay="1.1">The new model of investment<br class="d-none d-md-block">
+                                                </h1>
                                             </div>
                                             <div class="cpn-text cpn-text-light">
-                                                <p class="lead animated" data-animate="fadeInUp" data-delay="1.2">A clever solution on how to combine user-optimized interface and high functionality on one platform.</p>
+                                                <p class="lead animated" data-animate="fadeInUp" data-delay="1.2">We use artificial intelligence
+                                                    algorithms combined with fundamental analysis to ensure the best return on your
+                                                    investment</p>
                                             </div>
                                             <div class="cpn-action mt-0">
                                                 <div class="cpn-btns pt-4 animated" data-animate="fadeInUp" data-delay="1.3">
                                                     <ul class="btn-grp">
-                                                        <li><a href="#" class="btn btn-primary btn-lg">Get Started</a></li>
-                                                        <li><a href="#" class="btn btn-outline btn-primary on-bg-theme-alt btn-lg">Contact Us</a></li>
+                                                        <li><a href="../html-userpanel/signup.php" class="btn btn-primary btn-lg">Get Started</a></li>
+                                                        <li><a href="./page-contact.php" class="btn btn-outline btn-primary on-bg-theme-alt btn-lg">Contact Us</a></li>
                                                     </ul>
                                                 </div>
                                             </div>

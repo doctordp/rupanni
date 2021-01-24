@@ -2,10 +2,10 @@
 
 $server = 'covidtraknroot.mysql.db';
 $username = 'covidtraknroot';
-$password = 'AvXfZbRkwmH7G';
+$password = 'AvXfZbRkwmH7G'; //root
 $database = 'covidtraknroot';
-
-/* try {
+/* 
+ try {
   $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
 } catch (PDOException $e) {
         die('
@@ -20,7 +20,7 @@ $database = 'covidtraknroot';
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
                     <style>
-                        body {
+                        body {x
                             background-color: #333;
                             color: #fff;
                         }
