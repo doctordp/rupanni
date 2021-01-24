@@ -52,7 +52,7 @@
 							<nav class="header-menu" id="header-menu">
     <ul class="menu">
     <li class="menu-item">
-        <a class="menu-link nav-link" href="#">Home</a>
+        <a class="menu-link nav-link" href="./index-crocus-multi.php">Home</a>
         <!-- <div class="menu-sub menu-drop menu-mega menu-mega-3clmn">
             <div class="menu-mega-innr">
                 <ul class="menu-mega-list">
