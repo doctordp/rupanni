@@ -32,7 +32,7 @@
 					<div class="header-wrap">
 						<!-- Logo @s -->
 						<div class="header-logo logo">
-							<a href="./" class="logo-link">
+							<a href="./index-crocus-multi.php" class="logo-link">
 								<img class="logo-dark" src="images/logo.png" srcset="images/logo2x.png 2x" alt="logo">
 								<img class="logo-light" src="images/logo-full-white.png" srcset="images/logo-full-white2x.png 2x" alt="logo">
 							</a>
