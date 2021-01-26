@@ -1,3 +1,81 @@
+<?php
+  header('Content-Type: text/html; charset=UTF-8');
+  require('../../database.php');
+
+  $msg = null;
+  $titulo = null;
+  $contenido = null;
+  $email = null;
+  $nombre = null;
+  $fecha = null;
+  $estado = null;
+
+  function generarCodigo($longitud) {
+    $key = '';
+    $pattern = '1234567890axbyz';
+    $max = strlen($pattern)-1;
+    for($i=0;$i < $longitud;$i++) $key .= $pattern{mt_rand(0,$max)};
+    return $key;
+  }
+
+  // echo '#'. $user['id']. '+' . generarCodigo(rand(7,10)) . '#';
+
+  if(isset($_POST['nombre'], $_POST['contenido'])){
+
+    $titulo = "Consulta no cliente";
+    $contenido = strip_tags($_POST['contenido']);
+
+   
+
+      $ticket = '#'. $user['id']. '!' . generarCodigo(rand(7,10)) . '#';
+
+      $email = strip_tags($_POST['email']);
+      $estado = strip_tags("1");
+      $fecha = date('d-m-Y', time());
+      $nombre_completo = strip_tags($_POST['nombre']);
+
+      if(isset($_POST['contenido']) && isset($_POST['nombre']) && isset($_POST['email'])){
+        $query = $conn->prepare("INSERT INTO soporte (titulo, contenido, email, nombre_completo, fecha, ticket, estado) VALUES(:titulo, :contenido, :email, :nombre_completo, :fecha, :ticket, :estado)");
+        $query->execute([
+            'titulo' => $titulo,
+            'contenido' => $contenido,
+            'email' => $email,
+            'nombre_completo' => $nombre_completo,
+            'fecha' => $fecha,
+            'ticket' => $ticket,
+            'estado' => $estado
+        ]);
+        if($query){
+            $msg = '<br />
+            <div class="alert alert-success alert-dismissible" id="myAlert">
+                <button type="button" class="close">&times;</button>
+                <strong>Success!</strong> It has been opened a new ticket. Thank you for contacting us.
+            </div>
+            ';
+
+        } else {
+            $msg = '<br />
+            <div class="alert alert-danger alert-dismissible" id="myAlert">
+                <button type="button" class="close">&times;</button>
+                <strong>Error!</strong> An error has ocurred while creating the ticket.
+            </div>
+            ';    
+        }
+      }else{
+        $msg = '<br />
+        <div class="alert alert-danger alert-dismissible" id="myAlert">
+            <button type="button" class="close">&times;</button>
+            <strong>Error!</strong> Fill in all the fields.
+        </div>
+        ';    
+      }
+
+      
+     
+
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 <head>
@@ -293,26 +371,43 @@
                                         <div class="col-lg-4 offset-lg-1">
                                             <div class="gap-6x d-none d-lg-block"></div>
                                             <div class="gap-4x d-none d-lg-block"></div>
-                                            <form class="contact-form nk-form-submit" action="form/contact.php" method="post">
+                                            <!-- <form class="contact-form nk-form-submit" action="./page-contact.php" method="post" novalidate="validate">
                                                 <div class="field-item field-item-s2">
-                                                    <input name="contact-name" type="text" class="input-bordered required" placeholder="Your Name">
+                                                    <input name="nombre" type="text" class="input-bordered required" placeholder="Your Name">
                                                 </div>
                                                 <div class="field-item field-item-s2">
-                                                    <input name="contact-email" type="email" class="input-bordered required email" placeholder="Your Email">
+                                                    <input name="email" type="email" class="input-bordered required email" placeholder="Your Email">
                                                 </div>
                                                 <div class="field-item field-item-s2">
-                                                    <textarea name="contact-message" class="input-bordered input-textarea required" placeholder="Your Message"></textarea>
+                                                    <textarea name="contenido" class="input-bordered input-textarea required" placeholder="Your Message"></textarea>
                                                 </div>
-                                                <input type="text" class="d-none" name="form-anti-honeypot" value="">
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <button type="submit" class="btn btn-s2 btn-md btn-grad">Submit</button>
                                                     </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="form-results"></div>
-                                                    </div>
+                                                </div>
+                                            </form> -->
+                                            <form class="contact-form" action=" " method="post">
+                                                <div class="field-item field-item-s2">
+                                                    <input name="nombre" type="text" class="input-bordered required" placeholder="Your Name">
+                                                </div>
+                                                <div class="field-item field-item-s2">
+                                                    <input name="email" type="email" class="input-bordered required email" placeholder="Your Email">
+                                                </div>
+                                                <div class="field-item field-item-s2">
+                                                    <textarea name="contenido" class="input-bordered input-textarea required" placeholder="Your Message" value=" "></textarea>
+                                                </div>
+
+                                                <div class="row">
+                                                
+                                                </div><!-- .row -->
+                                                <div class="gaps-1x"></div><!-- 10px gap -->
+                                                <div class="d-sm-flex justify-content-between align-items-center">
+                                                <button type="submit" class="btn btn-s2 btn-md btn-grad">Submit</button>                                                    <div class="gaps-2x d-sm-none"></div>
+                                                    <!-- <span class="color-success"><em class="ti ti-check-box"></em> All Changes are saved</span> -->
                                                 </div>
                                             </form>
+                                            <div><?php echo($msg);?></div>
                                         </div><!-- .col -->
                                         <div class="col-lg-4 align-self-center">
                                             <div class="nk-block-img">
@@ -561,7 +656,7 @@
                                     </div>
                                 </div>
                             </div><!-- .col -->
-                            <div class="col-lg-6 mb-4 mb-lg-0 order-lg-first">
+                           <!--  <div class="col-lg-6 mb-4 mb-lg-0 order-lg-first">
                                 <div class="wgs wgs-text">
                                     <div class="wgs-body">
                                         <a href="./" class="wgs-logo">
@@ -571,8 +666,8 @@
                                         <p class="copyright-text">Template by <a href="https://softnio.com/">Softnio</a>. Handcrafted by iO.</p>
                                     </div>
                                 </div>
-                            </div><!-- .col -->
-                        </div><!-- .row -->
+                            </div> -->
+                        </div>
 					</div><!-- .block @e -->
 				</div>
 				

@@ -94,7 +94,7 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 <?php elseif(!empty($user) && $user['rango']==1): ?>
-<?php header('Location: /login/paneles/usuario/'); ?>
+<?php header('Location: ../html-userpanel/index.php'); ?>
 <?php elseif(empty($user) && $user['rango']==0): ?>
 <?php header('Location: /'); ?>
 <?php endif; ?>

@@ -2,7 +2,7 @@
 
   session_start();
 
-  require('database.php');
+  require('../../database.php');
 
   if(isset($_SESSION['user_id'])){
     $rec = $conn->prepare('SELECT * FROM users WHERE id = :id');
@@ -24,22 +24,23 @@
   <title>Sesión iniciada</title>
 </head>
 <body>
+<?php if(!empty($user) && $user['rango']==1): ?>
 
-  <?php if(!empty($user) && $user['rango']==1): ?>
+<?php
+  header('Location: ../admin/index.php');
+?>
+
+  <?php elseif(!empty($user) && $user['rango']==2): ?>
 
   <?php
     header('Location: ./index.php');
   ?>
 
-  <?php elseif(!empty($user) && $user['rango']==2): ?>
-
-  <?php
-    header('Location: ../admin/index.php');
-  ?>
+  
 
   <?php elseif(empty($user) || $user['rango']==0): ?>
     <?php
-      header('Location: login.php');
+      header('Location: ./login.php');
       // echo 'nada';
     ?>
   <?php endif; ?>

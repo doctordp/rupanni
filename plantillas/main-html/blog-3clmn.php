@@ -8,7 +8,7 @@
 <!-- Fav Icon  -->
 <link rel="shortcut icon" href="images/favicon.png">
 <!-- Site Title  -->
-<title>Blog 3clmn | ICO Crypto - ICO Landing Page &amp; Multi-Purpose Cryptocurrency HTML Template</title>
+<title>Blog 3clmn | Covidtrade</title>
 <!-- Bundle and Base CSS -->
 <link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=192">
 <link rel="stylesheet" href="assets/css/style.css?ver=192" id="changeTheme">
@@ -434,7 +434,7 @@
                                     </div>
                                 </div>
                             </div><!-- .col -->
-                            <div class="col-lg-6 mb-4 mb-lg-0 order-lg-first">
+                            <!-- <div class="col-lg-6 mb-4 mb-lg-0 order-lg-first">
                                 <div class="wgs wgs-text">
                                     <div class="wgs-body">
                                         <a href="./" class="wgs-logo">
@@ -444,8 +444,8 @@
                                         <p class="copyright-text">Template by <a href="https://softnio.com/">Softnio</a>. Handcrafted by iO.</p>
                                     </div>
                                 </div>
-                            </div><!-- .col -->
-                        </div><!-- .row -->
+                            </div> -->
+                        </div>
 					</div><!-- .block @e -->
 				</div>
 				

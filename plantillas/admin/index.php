@@ -4,7 +4,7 @@
   // error_reporting(0);
   require('../../database.php');
 
-  if(isset($_SESSION['user_id'])){
+   if(isset($_SESSION['user_id'])){
     $rec = $conn->prepare('SELECT * FROM users WHERE id = :id');
     $rec->bindParam(':id', $_SESSION['user_id']);
     $rec->execute();
@@ -275,7 +275,7 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 <?php elseif(!empty($user) && $user['rango']==1): ?>
-<?php header('Location: /login/paneles/usuario/'); ?>
+<?php header('Location: ../html-userpanel/index.php'); ?>
 <?php elseif(empty($user) && $user['rango']==0): ?>
 <?php header('Location: /'); ?>
 <?php endif; ?>

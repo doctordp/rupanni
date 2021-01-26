@@ -1,3 +1,25 @@
+<?php
+  ob_start();
+  session_start();
+  error_reporting(0);
+  require('../../database.php');
+
+  if(isset($_SESSION['user_id'])){
+    $rec = $conn->prepare('SELECT * FROM users WHERE id = :id');
+    $rec->bindParam(':id', $_SESSION['user_id']);
+    $rec->execute();
+    $ss = $rec->fetch(PDO::FETCH_ASSOC);
+
+    $user = null;
+
+    if(count($ss) > 0) {
+      $user = $ss;
+    }
+  } else {
+    header('Location: ../../');
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 <head>
@@ -8,7 +30,7 @@
 	<!-- Fav Icon  -->
 	<link rel="shortcut icon" href="images/favicon.png">
 	<!-- Site Title  -->
-	<title>Purchase Token | User Center - ICO Crypto</title>
+	<title>Invest Now! | Covidtrade</title>
 	<!-- Vendor Bundle CSS -->
 	<link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=101">
 	<!-- Custom styles for this template -->
@@ -43,8 +65,8 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="user-dropdown">
                                 <div class="user-dropdown-head">
-                                    <h6 class="user-dropdown-name">Stefan Harary <!-- <span>(IXIA1A105)</span> --></h6>
-                                    <span class="user-dropdown-email">useremail@example.com</span>
+                                    <h6 class="user-dropdown-name"><?php echo($user['nombre_completo']); ?><!-- <span>(IXIA1A105)</span> --></h6>
+                                    <span class="user-dropdown-email"><?php echo ($user['email']); ?></span>
                                 </div>
                                 <!-- <div class="user-dropdown-balance">
                                     <h6>ICO TOKEN BALANCE</h6>
@@ -105,8 +127,8 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="user-dropdown">
                                     <div class="user-dropdown-head">
-                                        <h6 class="user-dropdown-name">Stefan Harary <!-- <span>(IXIA1A105)</span>--></h6>
-                                        <span class="user-dropdown-email">useremail@example.com</span>
+                                        <h6 class="user-dropdown-name"><?php echo($user['nombre_completo']); ?><!-- <span>(IXIA1A105)</span>--></h6>
+                                        <span class="user-dropdown-email"><?php echo ($user['email']); ?></span>
                                     </div>
                                    <!--  <div class="user-dropdown-balance">
                                         <h6>ICO TOKEN BALANCE</h6>
@@ -145,7 +167,7 @@
                         <div class="user-image">
                             <img src="images/user-thumb-lg.png" alt="thumb">
                         </div>
-                        <h6 class="user-name">Stefan Harary</h6>
+                        <h6 class="user-name"><?php echo($user['nombre_completo']); ?></h6>
 <!--                         <div class="user-uid">Unique ID: <span>IXIA1A105</span></div>
  -->                        <ul class="btn-grp guttar-10px"><!-- 
                             <li><a href="#" class="btn btn-xs btn-warning">Confirm Email</a></li>
@@ -193,7 +215,7 @@
                         <form action="#">
                             <h5 class="user-panel-subtitle">01. Select the amount you want to invest</h5>
                             <div class="gaps-1x"></div>
-                            <div class="payment-list">
+                            <!-- <div class="payment-list">
                                 <div class="row">
                                    <div class="col-md-3 col-sm-6">
                                         <div class="payment-item">
@@ -204,7 +226,7 @@
                                             </label>
                                             <span>@ 0.1 ETH</span>
                                         </div>       
-                                   </div><!-- .col -->
+                                   </div>
                                    <div class="col-md-3 col-sm-6">
                                         <div class="payment-item">
                                             <input class="payment-check" type="radio" id="paylightcoin" name="payOption" value="tranxLTC">
@@ -214,7 +236,7 @@
                                             </label>
                                             <span>@ 0.1 LTC</span>
                                         </div>
-                                   </div><!-- .col -->
+                                   </div>
                                    <div class="col-md-3 col-sm-6">
                                        <div class="payment-item">
                                             <input class="payment-check" type="radio" id="paybtc" name="payOption" value="tranxBTC">
@@ -224,7 +246,7 @@
                                             </label>
                                             <span>@ 0.05 BTC</span>
                                         </div>
-                                   </div><!-- .col -->
+                                   </div>
                                    <div class="col-md-3 col-sm-6">
                                        <div class="payment-item">
                                             <input class="payment-check" type="radio" id="payusd" name="payOption" value="tranxUSD">
@@ -234,9 +256,13 @@
                                             </label>
                                             <span>@ 0.5 USD</span>
                                         </div>
-                                   </div><!-- .col -->
-                                </div><!-- .row -->
-                            </div><!-- .payment-list -->
+                                   </div>
+                                </div>
+                            </div> -->
+                            <div class="input-item input-with-label">
+                                        <label for="amount" class="input-item-label">Amount</label>
+                                        <input class="input-bordered" value="100" min="10" type="number" id="amount" name="amount">
+                            </div>
                             <div class="gaps-1x"></div>
                             <!-- <h5 class="user-panel-subtitle">02. Set amount of ICOX tokens you would like to purchase</h5>
                             <p>To become a part of the ICO Crypto project and purchase of ICOX token will only be possible after payment made and receving an approval.  As you like to participate our project, please select payment method and enter the amount of ICOX tokens you wish to purchase. You can buy ICOX tokens using ETH, BTC, LTC or USD. </p>
@@ -302,7 +328,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <a href="#" class="btn btn-primary payment-btn" data-toggle="modal" data-target="#tranxETH">Purchase Tokens</a>
+                            <a href="#" class="btn btn-primary payment-btn" onclick("showDataFromBank()") data-toggle="modal" data-target="#solicitud">Purchase</a>
                         </form><!-- form -->
                     </div><!-- .user-panel -->
                 </div><!-- .user-content -->
@@ -310,6 +336,20 @@
         </div><!-- .container -->
     </div>
     <!-- UserWraper End -->
+
+    <div class="modal fade" id="solicitud" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <a href="#" class="modal-close" data-dismiss="modal" aria-label="Close"><em class="ti ti-close"></em></a>
+                <div class="tranx-popup">
+                    <h5>Good! now you have to make a transfer to this account with the amount and your data</h5>
+                    <h4>Account holding: Rupani Technologies LLC</h4>
+                    <h4>BIC: TRWIBEB1XXX</4>
+                    <h4>IBAN: BE52 9671 7713 6009</h4>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
     <div class="modal fade" id="tranxETH" tabindex="-1">
@@ -532,17 +572,17 @@
     
     <div class="footer-bar">
         <div class="container">
-            <div class="row">
+            <<!-- div class="row">
                 <div class="col-md-7">
                     <span class="footer-copyright">Copyright 2018, <a href="#">ICO Crypto</a>.  All Rights Reserved.</span>
-                </div><!-- .col -->
+                </div>
                 <div class="col-md-5 text-md-right">
                     <ul class="footer-links">
                         <li><a href="policy.html">Privacy Policy</a></li>
                         <li><a href="policy.html">Terms of Sales</a></li>
                     </ul>
-                </div><!-- .col -->
-            </div><!-- .row -->
+                </div>
+            </div> -->
         </div><!-- .container -->
     </div>
     <!-- FooterBar End -->
@@ -550,6 +590,45 @@
     
 	<!-- JavaScript (include all script here) -->
 	<script src="assets/js/jquery.bundle.js?ver=101"></script>
-	<script src="assets/js/script.js?ver=101"></script>
+    <script src="assets/js/script.js?ver=101"></script>
+    <script>
+        function showDataFromBank(){
+        var allText = `
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <a href="#" class="modal-close" data-dismiss="modal" aria-label="Close"><em class="ti ti-close"></em></a>
+                <div class="tranx-popup">
+                    <h5>View Message Details</h5>
+                    <div class="tranx-purchase-details d-none active">
+                        <ul class="tranx-purchase-info">
+                            <li>
+                                <div class="tranx-purchase-head">Applicant</div>
+                                <div class="tranx-purchase-des">${incidenciaAMostrar[1]}</div>
+                            </li><!-- li -->
+                            <li>
+                                <div class="tranx-purchase-head">Date</div>
+                                <div class="tranx-purchase-des">${incidenciaAMostrar[4]}</div>
+                            </li><!-- li -->
+                            <li>
+                                <div class="tranx-purchase-head">Address</div>
+                                <div class="tranx-purchase-des">${incidenciaAMostrar[5]}</div>
+                            </li><!-- li -->
+                            <li>
+                                <div class="tranx-purchase-head">Phone Number</div>
+                                <div class="tranx-purchase-des">${incidenciaAMostrar[10]}</div>
+                            </li><!-- li -->
+                            <li>
+                                <div class="tranx-purchase-head">Amount</div>
+                                <div class="tranx-purchase-des">${incidenciaAMostrar[2]}</div>
+                            </li><!-- li --><!-- li -->
+                        </ul><!-- .tranx-purchase-info -->
+                    </div><!-- .tranx-payment-details -->
+                </div><!-- .tranx-popup -->
+            </div><!-- .modal-content -->
+        </div>
+        `;
+        destino.innerHTML = allText;
+        }
+    </script>
 </body>
 </html>

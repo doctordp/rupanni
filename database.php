@@ -1,12 +1,17 @@
 <?php
 
-$server = 'covidtraknroot.mysql.db';
-$username = 'covidtraknroot';
-$password = 'AvXfZbRkwmH7G'; //root
+//$server = 'covidtraknroot.mysql.db';
+$server = 'localhost';
+//$username = 'covidtraknroot';
+$username = 'coviddb';
+//$password = 'AvXfZbRkwmH7G'; //root
+$password = 'root';
 $database = 'covidtraknroot';
-/* 
+
  try {
-  $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
+  header('Content-type: text/html; charset=utf-8');
+  $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+  $conn->exec("set names utf8");
 } catch (PDOException $e) {
         die('
             <!DOCTYPE html>
@@ -56,6 +61,6 @@ $database = 'covidtraknroot';
                 </body>
             </html>
         ');
-} */
+} 
 
 ?>

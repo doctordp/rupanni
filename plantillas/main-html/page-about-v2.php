@@ -8,7 +8,7 @@
 <!-- Fav Icon  -->
 <link rel="shortcut icon" href="images/favicon.png">
 <!-- Site Title  -->
-<title>Page About V2 | ICO Crypto - ICO Landing Page &amp; Multi-Purpose Cryptocurrency HTML Template</title>
+<title>Page About V2 | Covidtrade</title>
 <!-- Bundle and Base CSS -->
 <link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=192">
 <link rel="stylesheet" href="assets/css/style.css?ver=192" id="changeTheme">

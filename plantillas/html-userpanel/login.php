@@ -1,12 +1,12 @@
 <?php
-/* 
+
   session_start();
 
   if (isset($_SESSION['user_id'])) {
-    header('Location: /login/index.php');
+    header('Location: ./index.php');
   }
   error_reporting(0);
-  require 'database.php';
+  require '../../database.php';
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $records = $conn->prepare('SELECT id, email, password FROM users WHERE email = :email');
@@ -18,7 +18,7 @@
 
     if (count($results) > 0 && password_verify(strip_tags($_POST['password']), $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
-      header("Location: ./redirect-user.php");
+      header("Location: ./intermediate.php");
     } else {
       $message = '
         <div class="alert alert-danger alert-dismissible" id="myAlert">
@@ -27,8 +27,7 @@
         </div>
         ';
     }
-  } */
-
+  }
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
@@ -40,7 +39,7 @@
 	<!-- Fav Icon  -->
 	<link rel="shortcut icon" href="images/favicon.png">
 	<!-- Site Title  -->
-	<title>User Center - ICO Crypto</title>
+	<title>User Center - Covidtrade</title>
 	<!-- Vendor Bundle CSS -->
 	<link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=101">
 	<!-- Custom styles for this template -->
@@ -61,7 +60,7 @@
                     </div>
                     <div class="user-ath-box">
                         <h4>Login to Your Account</h4>
-                        <form action=" " class="user-ath-form">
+                        <form action=" " method="post" class="user-ath-form">
 <!--
                             <div class="note note-lg note-no-icon note-danger">
                                 <p>Your email and password is invalid.</p>
@@ -86,6 +85,9 @@
                             <li><a href="#" class="btn btn-sm btn-icon btn-facebook"><em class="fab fa-facebook-f"></em>Facebook</a></li>
                             <li><a href="#" class="btn btn-sm btn-icon btn-google"><em class="fab fa-google"></em>Google</a></li>
                         </ul> -->
+                        <?php if(!empty($message)): ?>
+                              <p> <?= $message ?></p>
+                        <?php endif; ?>
                     </div>
                     <div class="gaps-2x"></div>
                     <div class="form-note">
@@ -99,6 +101,13 @@
     
 	<!-- JavaScript (include all script here) -->
 	<script src="assets/js/jquery.bundle.js?ver=101"></script>
-	<script src="assets/js/script.js?ver=101"></script>
+    <script src="assets/js/script.js?ver=101"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".close").click(function(){
+        $("#myAlert").alert("close");
+            });
+        });
+    </script>
 </body>
 </html>
