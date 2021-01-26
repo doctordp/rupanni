@@ -8,7 +8,7 @@
 <!-- Fav Icon  -->
 <link rel="shortcut icon" href="images/favicon.png">
 <!-- Site Title  -->
-<title>Crocus Wallet | ICO Crypto - ICO Landing Page &amp; Multi-Purpose Cryptocurrency HTML Template</title>
+<title>Covidtrade</title>
 <!-- Bundle and Base CSS -->
 <link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=192">
 <link rel="stylesheet" href="assets/css/style-lobelia.css?ver=192" id="changeTheme">
@@ -784,7 +784,7 @@
                                     <li><a href="#"><em class="social-icon social-icon-transparent fab fa-medium-m"></em></a></li>
                                 </ul>
                             </div>
-                            <div class="col-lg-5 col-sm-8">
+                            <!-- <div class="col-lg-5 col-sm-8">
                                 <div class="copyright-text copyright-text-s4">
                                     <p>© Copyright 2019, ICO Crypto. All Rights Reserved.</p>
                                 </div>
@@ -793,7 +793,7 @@
                                 <ul class="footer-links">
                                     <li><a href="#">Terms &amp; Conditions</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

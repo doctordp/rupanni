@@ -8,7 +8,7 @@
 	<!-- Fav Icon  -->
 	<link rel="shortcut icon" href="images/favicon.png">
 	<!-- Site Title  -->
-	<title>Activity | User Center - ICO Crypto</title>
+	<title>Activity Covidtrade</title>
 	<!-- Vendor Bundle CSS -->
 	<link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=101">
 	<!-- Custom styles for this template -->
@@ -43,8 +43,8 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="user-dropdown">
                                 <div class="user-dropdown-head">
-                                    <h6 class="user-dropdown-name">Stefan Harary <!-- <span>(IXIA1A105)</span> --></h6>
-                                    <span class="user-dropdown-email">useremail@example.com</span>
+                                    <h6 class="user-dropdown-name"><?php echo($user['nombre_completo']); ?><!-- <span>(IXIA1A105)</span> --></h6>
+                                    <span class="user-dropdown-email"><?php echo ($user['email']); ?></span>
                                 </div>
                                 <div class="user-dropdown-balance">
                                     <h6>ICO TOKEN BALANCE</h6>
@@ -105,8 +105,8 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="user-dropdown">
                                     <div class="user-dropdown-head">
-                                        <h6 class="user-dropdown-name">Stefan Harary <!-- <span>(IXIA1A105)</span> --></h6>
-                                        <span class="user-dropdown-email">useremail@example.com</span>
+                                        <h6 class="user-dropdown-name"><?php echo($user['nombre_completo']); ?><!-- <span>(IXIA1A105)</span> --></h6>
+                                        <span class="user-dropdown-email"><?php echo ($user['email']); ?></span>
                                     </div>
                                     <div class="user-dropdown-balance">
                                         <h6>ICO TOKEN BALANCE</h6>
@@ -145,7 +145,7 @@
                         <div class="user-image">
                             <img src="images/user-thumb-lg.png" alt="thumb">
                         </div>
-                        <h6 class="user-name">Stefan Harary</h6>
+                        <h6 class="user-name"><?php echo($user['nombre_completo']); ?></h6>
                         <div class="user-uid">Unique ID: <span>IXIA1A105</span></div>
                         <ul class="btn-grp guttar-10px">
                             <li><a href="#" class="btn btn-xs btn-warning">Confirm Email</a></li>

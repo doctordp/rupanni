@@ -1,6 +1,6 @@
 <?php
-/* 
-  require 'database.php';
+
+  require '../../database.php';
   error_reporting(0);
   $message = '';
 
@@ -39,7 +39,7 @@
           <strong>Success!</strong> This user has been created. Redirecting to login, please wait...
         </div>
         ';
-        header("Refresh:2; url=login.php");
+        header("Refresh:2; url=./login.php");
       } else {
         $message = '
         <div class="alert alert-danger alert-dismissible" id="myAlert">
@@ -50,7 +50,7 @@
       }
 
     }
-  } */
+  }
 ?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
@@ -62,7 +62,7 @@
 	<!-- Fav Icon  -->
 	<link rel="shortcut icon" href="images/favicon.png">
 	<!-- Site Title  -->
-	<title>User Center - ICO Crypto</title>
+	<title>User Center - Covidtrade</title>
 	<!-- Vendor Bundle CSS -->
 	<link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=101">
 	<!-- Custom styles for this template -->
@@ -83,7 +83,7 @@
                     </div>
                     <div class="user-ath-box">
                         <h4>Creat New Account</h4>
-                        <form action=" " class="user-ath-form">
+                        <form action=" " method="post" class="user-ath-form">
 <!--
                             <div class="note note-lg note-no-icon note-danger">
                                 <p>Please check your submited information for error.</p>
@@ -93,13 +93,13 @@
                             </div>
 -->
                             <div class="input-item">
-                                <input type="text" placeholder="Your Name" class="input-bordered">
+                                <input type="text" name="nombre_completo" placeholder="Your Name" class="input-bordered">
                             </div>
                             <div class="input-item">
-                                <input type="text" placeholder="Your Email" class="input-bordered">
+                                <input type="text" name="email" placeholder="Your Email" class="input-bordered">
                             </div>
                             <div class="input-item">
-                                <input type="password" placeholder="Password" class="input-bordered">
+                                <input type="password" name="password" placeholder="Password" class="input-bordered">
                             </div>
                             <!-- <div class="input-item">
                                 <input type="password" placeholder="Repeat Password" class="input-bordered">
@@ -120,6 +120,9 @@
                             <li><a href="#" class="btn btn-sm btn-icon btn-facebook"><em class="fab fa-facebook-f"></em>Facebook</a></li>
                             <li><a href="#" class="btn btn-sm btn-icon btn-google"><em class="fab fa-google"></em>Google</a></li>
                         </ul> -->
+                        <?php if(!empty($message)): ?>
+                              <p> <?= $message ?></p>
+                        <?php endif; ?>
                     </div>
                     <div class="gaps-2x"></div>
                     <div class="form-note">
@@ -133,6 +136,13 @@
     
 	<!-- JavaScript (include all script here) -->
 	<script src="assets/js/jquery.bundle.js?ver=101"></script>
-	<script src="assets/js/script.js?ver=101"></script>
+  <script src="assets/js/script.js?ver=101"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".close").click(function(){
+      $("#myAlert").alert("close");
+      });
+    });
+  </script>
 </body>
 </html>

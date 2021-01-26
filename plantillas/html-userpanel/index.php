@@ -1,3 +1,33 @@
+<?php
+  ob_start();
+  session_start();
+  error_reporting(0);
+  require('../../database.php');
+
+  if(isset($_SESSION['user_id'])){
+    $rec = $conn->prepare('SELECT * FROM users WHERE id = :id');
+    $rec->bindParam(':id', $_SESSION['user_id']);
+    $rec->execute();
+    $ss = $rec->fetch(PDO::FETCH_ASSOC);
+
+    $user = null;
+
+    if(count($ss) > 0) {
+      $user = $ss;
+    }
+
+    $email = strip_tags($user['email']);
+    $query = $conn->prepare("SELECT * FROM pagos WHERE email = :email");
+    $query->execute([
+        'email' => $email
+    ]);
+    $transactions = $query->fetchAll();
+  } else {
+    header('Location: ../../');
+  }
+
+?>
+<?php if(!empty($user) && $user['rango']==1): ?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 <head>
@@ -8,7 +38,7 @@
 	<!-- Fav Icon  -->
 	<link rel="shortcut icon" href="images/favicon.png">
 	<!-- Site Title  -->
-	<title>User Center - ICO Crypto</title>
+	<title>User Center - Covidtrade</title>
 	<!-- Vendor Bundle CSS -->
 	<link rel="stylesheet" href="assets/css/vendor.bundle.css?ver=101">
 	<!-- Custom styles for this template -->
@@ -43,8 +73,8 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="user-dropdown">
                                 <div class="user-dropdown-head">
-                                    <h6 class="user-dropdown-name">Stefan Harary <!-- <span>(IXIA1A105)</span> --></h6>
-                                    <span class="user-dropdown-email">useremail@example.com</span>
+                                    <h6 class="user-dropdown-name"><?php echo($user['nombre_completo']); ?> <!-- <span>(IXIA1A105)</span> --></h6>
+                                    <span class="user-dropdown-email"><?php echo ($user['email']); ?></span>
                                 </div>
                                 <!-- <div class="user-dropdown-balance">
                                     <h6>ICO TOKEN BALANCE</h6>
@@ -105,8 +135,8 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="user-dropdown">
                                     <div class="user-dropdown-head">
-                                        <h6 class="user-dropdown-name">Stefan Harary <!-- <span>(IXIA1A105)</span>--></h6>
-                                        <span class="user-dropdown-email">useremail@example.com</span>
+                                        <h6 class="user-dropdown-name"><?php echo($user['nombre_completo']); ?><!-- <span>(IXIA1A105)</span>--></h6>
+                                        <span class="user-dropdown-email"><?php echo ($user['email']); ?></span>
                                     </div>
                                    <!--  <div class="user-dropdown-balance">
                                         <h6>ICO TOKEN BALANCE</h6>
@@ -145,7 +175,7 @@
                         <div class="user-image">
                             <img src="images/user-thumb-lg.png" alt="thumb">
                         </div>
-                        <h6 class="user-name">Stefan Harary</h6>
+                        <h6 class="user-name"><?php echo($user['nombre_completo']); ?></h6>
 <!--                         <div class="user-uid">Unique ID: <span>IXIA1A105</span></div>
  -->                        <ul class="btn-grp guttar-10px"><!-- 
                             <li><a href="#" class="btn btn-xs btn-warning">Confirm Email</a></li>
@@ -207,9 +237,9 @@
                                     <div class="tile-bubbles"></div>
                                     <h6 class="tile-title">YOUR CONTRIBUTION</h6>
                                     <ul class="tile-info-list">
-                                        <li><span>1.646</span>ETH</li>
-                                        <li><span>~</span>BTC</li>
-                                        <li><span>5,940</span>USD</li>
+                                        <li><span><?php echo($transactions[0]['budget']); ?></span></li>
+                                        <li><span>-></span></li>
+                                        <li><span><?php echo($transactions[count($transactions)-1]['budget']); ?></span></li>
                                     </ul>
                                 </div>
                             </div><!-- .col -->
@@ -263,7 +293,7 @@
                                 <div class="progress-percent" style="width:25%"></div>
                             </div>
                         </div> -->
-                        <div class="gaps-3x"></div>
+                        <!-- <div class="gaps-3x"></div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -297,7 +327,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+                         -->
                     </div><!-- .user-panel -->
                 </div><!-- .user-content -->
             </div><!-- .d-flex -->
@@ -306,21 +336,21 @@
     <!-- UserWraper End -->
     
     
-    <div class="footer-bar">
+    <!-- <div class="footer-bar">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
                     <span class="footer-copyright">Copyright 2018, <a href="#">ICO Crypto</a>.  All Rights Reserved.</span>
-                </div><!-- .col -->
+                </div>
                 <div class="col-md-5 text-md-right">
                     <ul class="footer-links">
                         <li><a href="policy.html">Privacy Policy</a></li>
                         <li><a href="policy.html">Terms of Sales</a></li>
                     </ul>
-                </div><!-- .col -->
-            </div><!-- .row -->
-        </div><!-- .container -->
-    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
     <!-- FooterBar End -->
     
     
@@ -329,3 +359,8 @@
 	<script src="assets/js/script.js?ver=101"></script>
 </body>
 </html>
+<?php elseif(!empty($user) && $user['rango']==2): ?>
+<?php header('Location: ../admin/index.php');?>
+<?php elseif(empty($user) && $user['rango']==0): ?>
+<?php header('Location: /'); ?>
+<?php endif; ?>
